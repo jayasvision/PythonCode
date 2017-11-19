@@ -3,13 +3,17 @@
 	"version": "0.0.1",
 	"description": "",
 	"main": "src/client/index.jsx",
-	"keywords": ["react"],
+	"keywords": [
+		"react"
+	],
 	"license": "MIT",
 	"scripts": {
 		"start": "node devServer.js"
 	},
 	"dependencies": {
 		"axios": "^0.16.1",
+		"es6-promise": "^4.1.1",
+		"isomorphic-fetch": "^2.2.1",
 		"lodash": "^4.16.4",
 		"morgan": "^1.8.1",
 		"react": "^15.3.2",

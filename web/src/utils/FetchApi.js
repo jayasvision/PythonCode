@@ -17,6 +17,6 @@ export function em_fetch (url, opts) {
     }).catch(res => res.json());
 }
 
-export const utils = {
+export const API = {
   fetch: em_fetch
 }

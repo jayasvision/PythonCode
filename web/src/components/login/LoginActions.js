@@ -1,4 +1,4 @@
-import { fetch } from "../../utils/FetchApi";
+import { API } from "../../utils/FetchApi";
 import Promise from "es6-promise";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -13,7 +13,7 @@ export function handleLoginSuccess () {
 
 export const authenticate = loginData => {
 	return (dispatch, getState) => {
-		return fetch("/auth/login", loginData).then((json) => {
+		return API.fetch("/auth/login", loginData).then((json) => {
 			localStorage.setItem('ems_AuthKey', json.token);
 			dispatch(handleLoginSuccess());
 			return Promise.resolve(true);

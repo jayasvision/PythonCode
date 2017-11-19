@@ -1,4 +1,5 @@
-import fetch from "../../utils/FetchApi";
+import { fetch } from "../../utils/FetchApi";
+import Promise from "es6-promise";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 

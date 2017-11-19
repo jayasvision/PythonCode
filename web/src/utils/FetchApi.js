@@ -14,7 +14,10 @@ export function em_fetch (url, opts) {
     .then((res) => {
       if (res.ok) { return res.json(); }
       throw new Error(res.json());
-    }).catch(res => res.json());
+    }).catch(res => {
+      if (res.json) return res.json();
+      else return res;
+    });
 }
 
 export const API = {

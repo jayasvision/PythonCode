@@ -4,13 +4,13 @@ import { authenticate } from "./LoginActions";
 import { get } from "lodash";
 import { push } from "react-router-redux";
 import { reduxForm, Field } from "redux-form";
-
+import { Container, Row, Col, Button } from "reactstrap";
 class Login extends React.Component<{}, {}> {
 	constructor(props) {
 		super(props);
 		this.state = { email: "", password: "" };
 		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.isAuthenticated) {
@@ -24,40 +24,58 @@ class Login extends React.Component<{}, {}> {
 		event.persist();
 		this.setState({ [event.target.name]: event.target.value });
 	}
-	onSubmit(values) {
-		console.log(values);
-		//let loginData = { email: this.state.email, password: this.state.password };
-		//this.props.dispatch(authenticate(loginData));
+	handleSubmit(values) {
+		//console.log(values);
+		let loginData = { email: values.email, password: values.password };
+		this.props.dispatch(authenticate(loginData));
+		return false;
 	}
 	render() {
+		const { handleSubmit } = this.props;
 		return (
-			<div>
+			<Container>
 				{this.props.isAuthenticated ? (
 					"already Logged in"
 				) : (
-					<div style={{ width: "50%", margin: "0 auto" }}>
-						<h1>Login Form</h1>
-						<form onSubmit={this.onSubmit}>
-							<div>
-								<label htmlFor="email">Email</label>
-								<Field name="email" component="input" type="email" />
-							</div>
-							<div>
-								<label htmlFor="password">Password</label>
-								<Field name="password" component="input" type="password" />
-							</div>
-							<button type="submit">Submit</button>
-						</form>
-					</div>
+					<Row style={{ width: "50%", margin: "0 auto" }}>
+						<Col xs={12}>
+							<h1>Login Form</h1>
+						</Col>
+						<Col xs={12}>
+							<form onSubmit={handleSubmit(this.handleSubmit)}>
+								<Row>
+									<Col xs={6} md={2}>
+										<label htmlFor="email">Email</label>
+									</Col>
+									<Col xs={6} md={10}>
+										<Field name="email" component="input" type="email" />
+									</Col>
+								</Row>
+								<Row>
+									<Col xs={6} md={2}>
+										<label htmlFor="password">Password</label>
+									</Col>
+									<Col xs={6} md={10}>
+										<Field name="password" component="input" type="password" />
+									</Col>
+								</Row>
+								<Row>
+									<Col xs={{ size: 6, offset: 3 }}>
+										<button type="submit">Submit</button>
+									</Col>
+								</Row>
+							</form>
+						</Col>
+					</Row>
 				)}
-			</div>
+			</Container>
 		);
 	}
 }
 
 export const mapStateToProps = (state, ownProps) => ({
-	isAuthenticated: state.authReducer.isAuthenticated,
+	isAuthenticated: state.authReducer.isAuthenticated
 });
 export default reduxForm({
-	form: "login",
+	form: "login"
 })(connect(mapStateToProps)(Login));

@@ -5,18 +5,18 @@ https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi
 
 2. Now set python path in environment variables
 3. Setup virtualenv
-   # pip install virtualenv
+   <pre>pip install virtualenv</pre>
 
    Go to django project directory where manage.py available and run following commands
-   # virtualenv venv -p <path of python.exe>
-   # .\venv\Scripts\activate.bat
+   <pre>virtualenv venv -p (path of python.exe)
+   .\venv\Scripts\activate.bat</pre>
 
 4. Stay in to the same directory and run following commands to install dependecies
-   # pip install -r requirements.txt
-   # python manage.py migrate
-   # python manage.py createsuperuser
+   <pre>pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py createsuperuser</pre>
 
 5. Run the server
-   # python manage.py runserver
+   <pre>python manage.py runserver</pre>
 
 6. Access at http://localhost:8000/

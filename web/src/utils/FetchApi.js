@@ -18,11 +18,10 @@ export function em_fetch(url, opts) {
   }
   console.log(newOpts);
   return fetch(API_PREFIX + url, newOpts).then(res => {
-    console.log(res, res.ok);
     if (res.ok) {
       return res.json();
     }
-    throw new Error("Error Occured");
+    throw res;
   });
 }
 

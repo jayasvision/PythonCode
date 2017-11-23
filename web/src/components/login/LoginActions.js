@@ -21,7 +21,11 @@ export const authenticate = loginData => {
         return Promise.resolve(true);
       })
       .catch(error => {
-        console.log("error");
+        if (error.json) {
+          error.json().then(data => {
+            console.log("error", data);
+          });
+        }
       });
   };
 };

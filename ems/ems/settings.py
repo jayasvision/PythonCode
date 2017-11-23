@@ -11,7 +11,7 @@ sys.path.insert(0, path.join(PROJECT_ROOT, 'apps'))
 DEBUG = True
 
 ALLOWED_HOSTS = (
-    'localhost',
+    '*',
 )
 
 ADMINS = (

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "react-dom";
-import { Router, Route, browserHistory } from "react-router";
+import { Router, Route, browserHistory, IndexRedirect } from "react-router";
 import { Provider } from "react-redux";
 import { syncHistoryWithStore } from "react-router-redux";
 import configureStore from "../store/configureStore";
@@ -14,14 +14,15 @@ require("bootstrap/dist/css/bootstrap.css");
 const store = configureStore(browserHistory, {});
 const enhancedHistory = syncHistoryWithStore(browserHistory, store);
 let routes = (
-	<Route path="/" component={App}>
-		<Route path="/home" component={requireAuth(Home, "/login")} />
-		<Route path="/login" component={Login} />
-	</Route>
+  <Route path="/" component={App}>
+    <IndexRedirect to="/home" />
+    <Route path="/home" component={requireAuth(Home, "/login")} />
+    <Route path="/login" component={Login} />
+  </Route>
 );
 render(
-	<Provider store={store}>
-		<Router history={enhancedHistory} routes={routes} />
-	</Provider>,
-	document.getElementById("react-root")
+  <Provider store={store}>
+    <Router history={enhancedHistory} routes={routes} />
+  </Provider>,
+  document.getElementById("react-root"),
 );

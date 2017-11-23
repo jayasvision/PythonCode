@@ -20,9 +20,8 @@ export const authenticate = loginData => {
         dispatch(handleLoginSuccess(json));
         return Promise.resolve(true);
       })
-      .catch(res => {
-        // Need to handle error scenarios better here;
-        console.log(res.message);
+      .catch(error => {
+        console.log("error");
       });
   };
 };
